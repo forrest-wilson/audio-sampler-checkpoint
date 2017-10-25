@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Audio Sampler</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        .outer {
+            display: grid;
+            grid-template-rows: repeat(3, 1fr);
+            height: 100vh;
+        }
+
+        .pad {
+            width: 100%;
+            border: 5px black solid;
+            background-color: lightblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div id="pad1" class="pad"></div>
+        <div id="pad2" class="pad"></div>
+        <div id="pad3" class="pad"></div>
+    </div>
+
+    <script>
+        // IIFE
+        (function() {
+
+            var pads = document.getElementsByClassName("pad");
+
+            for (i = 0; i < pads.length; i++) {
+                var audio = document.createElement("AUDIO"),
+                    id = pads[i].id;
+
+                audio.setAttribute("src", "audio/" + i + ".wav");
+                pads[i].appendChild(audio);
+
+                document.getElementById(id).addEventListener("click", function() {
+                    var audio = this.children[0];
+
+                    if (audio.paused) {
+                        audio.play();
+                    } else {
+                        audio.pause();
+                    }
+                });
+            }
+
+        })();
+    </script>
+</body>
+</html>
