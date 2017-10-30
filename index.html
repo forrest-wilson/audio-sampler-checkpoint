@@ -41,16 +41,23 @@
 
             var pads = document.getElementsByClassName("pad");
 
+            // Loops through the pads array and creates an audio element in each div
             for (i = 0; i < pads.length; i++) {
                 var audio = document.createElement("AUDIO"),
                     id = pads[i].id;
 
+                // Sets the src attribute
                 audio.setAttribute("src", "audio/" + i + ".wav");
+
+                // Appends the audio object to the pad at 'i' index
                 pads[i].appendChild(audio);
 
+                // Adds a 'click' event listener to each 'id' in the pads array
                 document.getElementById(id).addEventListener("click", function() {
                     var audio = this.children[0];
 
+                    // Checks to see whether audio is playing or paused and changes play state
+                    // depending on it's state.
                     if (audio.paused) {
                         audio.play();
                     } else {
